@@ -1,0 +1,51 @@
+<!-- <header>
+  <div class="header-container">
+    <div class="nav-buttons">
+      <button (click)="navigateTo('')">Ranking</button>
+      <button (click)="navigateTo('comparador')">Comparador de Jugadores</button>
+    </div>
+    <div class="login-form">
+      <input type="text" placeholder="Usuario" [(ngModel)]="username">
+      <input type="password" placeholder="Contraseña" [(ngModel)]="password">
+      <button (click)="login()">Login</button>
+    </div>
+  </div>
+  <h1>Ranking</h1>
+</header>
+ -->
+<app-header></app-header>
+
+<div class="jugadores-grid">
+  <div *ngFor="let jugador of jugadores.slice(0, 40)" class="jugador-card">
+    <div class="jugador-info">
+      <span class="ranking">{{ jugador.posicionRanking }}
+        <sup class="sup-ranking"
+          *ngIf="jugador.variacionPuesto.substring(0, 1) === 'S'">{{jugador.variacionPuesto.substring(1)}}</sup>
+        <sub class="sub-ranking"
+          *ngIf="jugador.variacionPuesto.substring(0, 1) === 'B'">{{jugador.variacionPuesto.substring(1)}}</sub>
+      </span>
+
+      <p class="nombre">{{ jugador.nombre }}</p>
+      <p class="puntos">{{ jugador.puntos }} puntos</p>
+      <img src="{{ jugador.rutaBandera }}" alt="Bandera de {{ jugador.nacionalidad }}" class="bandera" />
+    </div>
+    <img src="{{ jugador.rutaFoto }}" alt="Foto de {{ jugador.nombre }}" class="foto-ranking" />
+  </div>
+</div>
+
+<div class="jugadores-lista">
+  <div *ngFor="let jugador of jugadores.slice(40)" class="jugador-lista-item">
+    <span class="ranking">{{ jugador.posicionRanking }}
+      <sup class="sup-ranking"
+        *ngIf="jugador.variacionPuesto.substring(0, 1) === 'S'">{{jugador.variacionPuesto.substring(1)}}</sup>
+      <sub class="sub-ranking"
+        *ngIf="jugador.variacionPuesto.substring(0, 1) === 'B'">{{jugador.variacionPuesto.substring(1)}}</sub>
+    </span>
+    <p class="nombre">{{ jugador.nombre }}</p>
+    <p class="puntos">{{ jugador.puntos }} puntos</p>
+    <img src="{{ jugador.rutaBandera }}" alt="Bandera de {{ jugador.nacionalidad }}" class="bandera" />
+    <img src="{{ jugador.rutaFoto }}" alt="Foto de {{ jugador.nombre }}" class="foto-ranking-lista" />
+  </div>
+</div>
+
+<app-footer></app-footer>

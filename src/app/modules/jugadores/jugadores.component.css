@@ -1,0 +1,171 @@
+@font-face {
+  font-family: 'DINCondensed-Bold';
+  src: url('src/assets/fonts/D-DIN-Bold.otf') format('truetype');
+}
+
+body {
+  font-family: 'DINCondensed-Bold', Arial, sans-serif;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+/* header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-buttons button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-buttons button:hover {
+  background-color: #555;
+}
+
+.login-form {
+  display: flex;
+  gap: 10px;
+}
+
+.login-form input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #218838;
+} */
+
+
+
+h1 {
+  margin: 0;
+}
+
+/* grid de jugadores */
+.jugadores-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.jugador-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.jugador-card:hover {
+  transform: translateY(-5px);
+}
+
+.jugador-info {
+  padding: 10px;
+}
+
+.ranking {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.nombre {
+  font-size: 1.1em;
+  margin: 5px 0;
+}
+
+.puntos {
+  color: #888;
+  margin: 5px 0;
+}
+
+.sup-ranking {
+    color: green;
+  }
+  .sub-ranking {
+    color: red;
+  }
+
+.bandera {
+  width: 30px;
+  height: 20px;
+}
+
+.foto-ranking {
+  width: 100%;
+  height: auto;
+}
+
+/* lista de jugadores */
+.jugadores-lista {
+  padding: 20px;
+}
+
+.jugador-lista-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.jugador-lista-item .ranking {
+  flex: 0 0 50px;
+  text-align: center;
+}
+
+.jugador-lista-item .nombre {
+  flex: 1;
+  font-size: 1.1em;
+}
+
+.jugador-lista-item .puntos {
+  color: #888;
+}
+
+.jugador-lista-item .bandera {
+  width: 30px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.jugador-lista-item .foto-ranking-lista {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+}

@@ -1,0 +1,174 @@
+
+<app-header [titulo]="titulo"></app-header>
+
+<div class="comparador-container">
+    <div class="input-container">
+      <div class="input-field">
+        <label for="jugadorId1">Jugador 1:</label>
+        <input type="text" id="jugadorId1" [(ngModel)]="jugadorId1" (input)="searchJugadores1($event)" placeholder="Introduce el nombre del jugador">
+        <!-- <img [src]="jugador1?.rutaFoto" *ngIf="jugador1?.rutaFoto" alt="Foto Jugador 1" class="jugador-foto"> -->
+        <ul *ngIf="filteredJugadores1.length > 0" class="suggestions">
+          <li *ngFor="let jugador of filteredJugadores1" (click)="selectJugador1(jugador)">
+            <img [src]="jugador.rutaFoto" alt="Foto {{ jugador.nombre }}" class="jugador-foto-suggestion foto-chiquita">
+            {{ jugador.nombre }}
+          </li>
+        </ul>
+      </div>
+      <div class="input-field">
+        <label for="jugadorId2">Jugador 2:</label>
+        <input type="text" id="jugadorId2" [(ngModel)]="jugadorId2" (input)="searchJugadores2($event)" placeholder="Introduce el nombre del jugador">
+        <!-- <img [src]="jugador2?.rutaFoto" *ngIf="jugador2?.rutaFoto" alt="Foto Jugador 2" class="jugador-foto"> -->
+        <ul *ngIf="filteredJugadores2.length > 0" class="suggestions">
+          <li *ngFor="let jugador of filteredJugadores2" (click)="selectJugador2(jugador)">
+            <img [src]="jugador.rutaFoto" alt="Foto {{ jugador.nombre }}" class="jugador-foto-suggestion foto-chiquita">
+            {{ jugador.nombre }}
+          </li>
+        </ul>
+      </div>
+      <button class="buscar-button" (click)="buscarPartidos()">Buscar Partidos</button>
+    </div>
+
+  <div *ngIf="jugador1 && jugador2" class="jugadores-info-container">
+    <table class="jugadores-info-table">
+      <thead>
+        <tr>
+          <th>{{ jugador1?.nombre ?? '' }}</th>
+          <th></th>
+          <th>{{ jugador2?.nombre }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img [src]="jugador1?.rutaFoto" alt="Foto {{ jugador1?.nombre }}" class="jugador-info-foto"></td>
+          <td>Foto</td>
+          <td><img [src]="jugador2?.rutaFoto" alt="Foto {{ jugador2?.nombre }}" class="jugador-info-foto"></td>
+        </tr>
+        <tr>
+          <td>{{ jugador1?.posicionRanking }}</td>
+          <td>Puesto en el Ranking</td>
+          <td>{{ jugador2?.posicionRanking }}</td>
+        </tr>
+        <tr>
+          <td>{{ jugador1?.puntos }}</td>
+          <td>Puntos en el Ranking</td>
+          <td>{{ jugador2?.puntos }}</td>
+        </tr>
+        <tr>
+          <td>{{ jugador1?.posicionPista }}</td>
+          <td>Posición en la Pista</td>
+          <td>{{ jugador2?.posicionPista }}</td>
+        </tr>
+        <tr>
+          <td>{{ jugador1?.altura }} m</td>
+          <td>Altura</td>
+          <td>{{ jugador2?.altura }} m</td>
+        </tr>
+        <tr>
+          <td>{{ jugador1?.fechaNac | date:'yyyy' }}</td>
+          <td>Año de Nacimiento</td>
+          <td>{{ jugador2?.fechaNac | date:'yyyy' }}</td>
+        </tr>
+        <tr>
+          <td>{{ jugador1?.partidosGanados }}</td>
+          <td>Partidos Ganados</td>
+          <td>{{ jugador2?.partidosGanados }}</td>
+        </tr>
+        <!-- <tr>
+          <td>{{ jugador1?.partidosJugados }} - {{ jugador1?.partidosGanados }}</td>
+          <td>Partidos Perdidos</td>
+          <td>{{ jugador2?.partidosJugados - jugador2?.partidosGanados }}</td>
+        </tr> -->
+        <tr>
+          <td>{{ jugador1?.victoriasConsecutivas }}</td>
+          <td>Racha de Victorias</td>
+          <td>{{ jugador2?.victoriasConsecutivas }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="partidos && partidos.length > 0" class="partidos-container">
+    <h3>Partidos Encontrados:</h3>
+    <table class="partidos-table">
+      <thead>
+        <tr>
+          <th>Torneo</th>
+          <th>Fecha</th>
+          <th>Ronda</th>
+          <th>Jugadores</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let partido of partidos" class="partido-row">
+          <td>{{ partido.ronda.torneo.nombre }}</td>
+          <td>{{ partido.ronda.torneo.fechaInicio | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ partido.ronda.nombre }}</td>
+          <td>
+            <div class="jugadores">
+              <span [class.ganadores]="partido.parejaGanadoraId === 1">{{ partido.jugador1?.nombre }} y {{ partido.jugador2.nombre }}</span>
+              vs
+              <span [class.ganadores]="partido.parejaGanadoraId === 2">{{ partido.jugador3.nombre }} y {{ partido.jugador4.nombre }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="sets">
+              <span *ngFor="let set of partido.sets">Set {{ set.setNumero }}: {{ set.puntosPareja1 }} - {{ set.puntosPareja2 }}</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="primeraBusquedaHecha && partidos && partidos.length === 0">
+    <p>No se encontraron partidos entre estos jugadores.</p>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+
+<!-- <app-header></app-header>
+
+<div class="comparador-container">
+  <h2>Comparar Jugadores</h2>
+  <div class="input-container">
+    <div class="input-field">
+      <label for="jugadorId1">Jugador 1 ID:</label>
+      <input type="text" id="jugadorId1" [(ngModel)]="jugadorId1">
+    </div>
+    <div class="input-field">
+      <label for="jugadorId2">Jugador 2 ID:</label>
+      <input type="text" id="jugadorId2" [(ngModel)]="jugadorId2">
+    </div>
+    <button class="buscar-button" (click)="buscarPartidos()">Buscar Partidos</button>
+  </div>
+
+  <div *ngIf="partidos && partidos.length > 0" class="partidos-container">
+    <h3>Partidos Encontrados:</h3>
+    <ul class="partidos-list">
+      <li *ngFor="let partido of partidos" class="partido-card">
+        <div class="partido-info">
+          <strong>Fecha:</strong> {{ partido.fecha }} <br>
+          <strong>Jugadores:</strong> {{ partido.jugador1?.nombre }} y {{ partido.jugador2.nombre }} vs {{
+          partido.jugador3.nombre }} y {{ partido.jugador4.nombre }} <br>
+          <strong>Ganadores:</strong> {{ partido.parejaGanadoraId === 1 ? (partido.jugador1.nombre + ' y ' +
+          partido.jugador2.nombre) : (partido.jugador3.nombre + ' y ' + partido.jugador4.nombre) }} <br>
+        </div>
+        <div class="sets-info">
+          <strong>Sets:</strong>
+          <ul>
+            <li *ngFor="let set of partido.sets">
+              Set {{ set.setNumero }}: {{ set.puntosPareja1 }} - {{ set.puntosPareja2 }}
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="partidos && partidos.length === 0">
+    <p>No se encontraron partidos entre estos jugadores.</p>
+  </div>
+</div>
+
+<app-footer></app-footer> -->
