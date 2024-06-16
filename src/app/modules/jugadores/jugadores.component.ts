@@ -13,6 +13,7 @@ export class JugadoresComponent {
   username: string = '';
   password: string = '';
   jugadores: Jugadores[] = [];
+  
 
   constructor(
     private jugadoresService: JugadoresService,
