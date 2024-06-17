@@ -5,7 +5,7 @@
     <div class="input-container">
       <div class="input-field">
         <label for="jugadorId1">Jugador 1:</label>
-        <input type="text" id="jugadorId1" [(ngModel)]="jugadorId1" (input)="searchJugadores1($event)" placeholder="Introduce el nombre del jugador">
+        <input type="text" id="jugadorId1" [(ngModel)]="nombreJ1" value="jugadorId1" (input)="searchJugadores1($event)" placeholder="Introduce el nombre del jugador">
         <!-- <img [src]="jugador1?.rutaFoto" *ngIf="jugador1?.rutaFoto" alt="Foto Jugador 1" class="jugador-foto"> -->
         <ul *ngIf="filteredJugadores1.length > 0" class="suggestions">
           <li *ngFor="let jugador of filteredJugadores1" (click)="selectJugador1(jugador)">
@@ -16,7 +16,7 @@
       </div>
       <div class="input-field">
         <label for="jugadorId2">Jugador 2:</label>
-        <input type="text" id="jugadorId2" [(ngModel)]="jugadorId2" (input)="searchJugadores2($event)" placeholder="Introduce el nombre del jugador">
+        <input type="text" id="jugadorId2" [(ngModel)]="nombreJ2" value="jugadorId2" (input)="searchJugadores2($event)" placeholder="Introduce el nombre del jugador">
         <!-- <img [src]="jugador2?.rutaFoto" *ngIf="jugador2?.rutaFoto" alt="Foto Jugador 2" class="jugador-foto"> -->
         <ul *ngIf="filteredJugadores2.length > 0" class="suggestions">
           <li *ngFor="let jugador of filteredJugadores2" (click)="selectJugador2(jugador)">
@@ -63,11 +63,11 @@
           <td>Altura</td>
           <td>{{ jugador2?.altura }} m</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>{{ jugador1?.fechaNac | date:'yyyy' }}</td>
           <td>Año de Nacimiento</td>
           <td>{{ jugador2?.fechaNac | date:'yyyy' }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td>{{ jugador1?.partidosGanados }}</td>
           <td>Partidos Ganados</td>

@@ -13,6 +13,9 @@ import { Observable, Subject, debounceTime, distinctUntilChanged, of, switchMap 
 })
 export class ComparadorJugadoresComponent {
 
+  nombreJ1 = '';
+  nombreJ2= '';
+
   jugadorId1 = '';
   jugadorId2 = '';
   partidos: Partidos[] = [];
@@ -98,11 +101,13 @@ export class ComparadorJugadoresComponent {
     this.jugadorId1 = jugador.id;
     this.jugador1 = jugador;
     this.filteredJugadores1 = [];
+    this.nombreJ1 = jugador.nombre;
   }
 
   selectJugador2(jugador: Jugadores): void {
     this.jugadorId2 = jugador.id;
     this.jugador2 = jugador;
     this.filteredJugadores2 = [];
+    this.nombreJ2 = jugador.nombre;
   }
 }
