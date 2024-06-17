@@ -14,7 +14,7 @@ import { Observable, Subject, debounceTime, distinctUntilChanged, of, switchMap 
 export class ComparadorJugadoresComponent {
 
   nombreJ1 = '';
-  nombreJ2= '';
+  nombreJ2 = '';
 
   jugadorId1 = '';
   jugadorId2 = '';
@@ -34,7 +34,7 @@ export class ComparadorJugadoresComponent {
     private partidosService: PartidosService,
     private jugadoresService: JugadoresService,
   ) {
-    
+
   }
 
   ngOnInit() {
@@ -59,7 +59,7 @@ export class ComparadorJugadoresComponent {
 
   populateJugadores() {
     this.jugadoresService.getAll().subscribe((data: Jugadores[]) => {
-      this.jugadores = data;
+      this.jugadores = data.sort((a, b) => a.posicionRanking - b.posicionRanking);
     });
   }
 
@@ -93,7 +93,7 @@ export class ComparadorJugadoresComponent {
     if (!term.trim()) {
       return of([]);
     }
-    return of(this.jugadores.filter(jugador => 
+    return of(this.jugadores.filter(jugador =>
       jugador.nombre.toLowerCase().includes(term.toLowerCase())));
   }
 
